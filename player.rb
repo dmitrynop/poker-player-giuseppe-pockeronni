@@ -2,7 +2,7 @@ require_relative 'first_hand'
 require_relative 'second_hand'
 
 class Player
-  VERSION = "Jay and Silent Bob"
+  VERSION = "Brickleberry"
 
   MINIMUM_BET = 240
   attr_reader :state
@@ -24,7 +24,8 @@ class Player
         minimum_bet
       else
         suitable_bet = (game_state['current_buy_in'] == (game_state['small_blind'] * 2))
-        if suitable_bet
+        has_out = game_state['players'].select { |p| p['status'] == 'out' }.any?
+        if suitable_bet && has_out
           minimum_bet
         else
           0
