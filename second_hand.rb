@@ -7,14 +7,16 @@ class SecondHand
     @cards = @own_cards + @community_cards
   end
 
-  def good?
+  def decision
     # check all cards
     response = Ranking.check_hand(@cards)
     p response
-    if response.rank > 4
-      true
+    if response['rank'] > 4
+      :raise
+    elsif response['rank'] > 1
+      :call
     else
-      false
+      :pass
     end
 
   end

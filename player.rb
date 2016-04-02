@@ -11,10 +11,13 @@ class Player
     @state = game_state
 
     if (me['hole_cards'] + state['community_cards']).length >= 5
-      if SecondHand.new(me['hole_cards'], state['community_cards']).good?
-        smart_bet
-      else
+      case SecondHand.new(me['hole_cards'], state['community_cards'])
+      when :call
         minimum_bet
+      when :raise
+        smart_bet
+      else # pass
+        0
       end
     else
       if FirstHand.new(me['hole_cards']).good?
