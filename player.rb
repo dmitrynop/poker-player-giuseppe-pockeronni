@@ -2,7 +2,7 @@ require_relative 'first_hand'
 require_relative 'second_hand'
 
 class Player
-  VERSION = "Fargo"
+  VERSION = "Brickleberry"
 
   MINIMUM_BET = 240
   attr_reader :state
@@ -23,23 +23,15 @@ class Player
       if FirstHand.new(me['hole_cards']).good?
         minimum_bet
       else
-        0
+        suitable_bet = (game_state['current_buy_in'] == (game_state['small_blind'] * 2))
+        has_out = game_state['players'].select { |p| p['status'] == 'out' }.any?
+        if suitable_bet && has_out
+          minimum_bet
+        else
+          0
+        end
       end
     end
-    # case state['round']
-    # when 0
-    #   if FirstHand.new(me['hole_cards']).good?
-    #     smart_bet
-    #   else
-    #     minimum_bet
-    #   end
-    # else
-    #   if SecondHand.new(me['hole_cards'], state['community_cards']).good?
-    #     smart_bet
-    #   else
-    #     minimum_bet
-    #   end
-    # end
   end
 
   def showdown(game_state)
