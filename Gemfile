@@ -5,3 +5,5 @@ gem 'bundler'
 gem 'rake'
 gem 'sinatra'
 gem 'poker-ranking'
+
+gem 'thin'
