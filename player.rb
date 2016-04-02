@@ -2,7 +2,7 @@ require_relative 'first_hand'
 require_relative 'second_hand'
 
 class Player
-  VERSION = "Breaking bad"
+  VERSION = "Better call Saul"
 
   MINIMUM_BET = 240
   attr_reader :state
@@ -21,9 +21,9 @@ class Player
       end
     else
       if FirstHand.new(me['hole_cards']).good?
-        smart_bet
-      else
         minimum_bet
+      else
+        0
       end
     end
     # case state['round']
