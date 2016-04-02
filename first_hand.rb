@@ -10,25 +10,61 @@ class FirstHand
 
     return true if find('Q').count >= 2
 
+    a = find('A')
+    k = find('K')
+    return true if a.any? && k.any? && same_suit?(a + k)
+
+    a = find('A')
+    q = find('Q')
+    return true if a.any? && q.any? && same_suit?(a + q)
+
     return true if find('J').count >= 2
+
+    k = find('K')
+    q = find('Q')
+    return true if k.any? && q.any? && same_suit?(k + q)
+
+    a = find('A')
+    j = find('J')
+    return true if a.any? && j.any? && same_suit?(a + j)
+
+    return true if find('A').any? && find('K').any?
 
     return true if find('10').count >= 2
 
-    k = find('A')
-    a = find('K')
-    return true if k.any? && a.any? && same_suit?(k + a)
-
-    k = find('A')
-    a = find('Q')
-    return true if k.any? && a.any? && same_suit?(k + a)
+    a = find('A')
+    _10 = find('10')
+    return true if a.any? && _10.any? && same_suit?(a + _10)
 
     k = find('K')
-    a = find('Q')
-    return true if k.any? && a.any? && same_suit?(k + a)
+    j = find('J')
+    return true if k.any? && j.any? && same_suit?(k + j)
 
-    k = find('A')
-    a = find('J')
-    return true if k.any? && a.any? && same_suit?(k + a)
+    return true if find('A').any? && find('Q').any?
+
+    return true if find('9').count >= 2
+
+    q = find('Q')
+    j = find('J')
+    return true if q.any? && j.any? && same_suit?(q + j)
+
+    k = find('K')
+    _10 = find('10')
+    return true if k.any? && _10.any? && same_suit?(k + _10)
+
+    return true if find('8').count >= 2
+
+    q = find('Q')
+    _10 = find('10')
+    return true if q.any? && _10.any? && same_suit?(q + _10)
+
+    a = find('A')
+    _9 = find('9')
+    return true if a.any? && _9.any? && same_suit?(a + _9)
+
+    a = find('A')
+    j = find('J')
+    return true if a.any? && j.any?
 
     false
   end
@@ -39,6 +75,7 @@ class FirstHand
     suits.uniq.each do |s|
       return true if suits.select { |s1| s1 == s }.length >= 2
     end
+    return false
   end
 
   def find(rank, suit = nil)
