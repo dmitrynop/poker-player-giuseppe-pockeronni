@@ -1,7 +1,7 @@
 require_relative 'first_hand'
 
 class Player
-  VERSION = "Ovik"
+  VERSION = "Sergey"
 
   MINIMUM_BET = 240
   attr_reader :state
@@ -11,7 +11,11 @@ class Player
 
     case state['round']
     when 0
-      FirstHand.new(me['hole_cards']).good?
+      if FirstHand.new(me['hole_cards']).good?
+        smart_bet
+      else
+        minimum_bet
+      end
     else
       smart_bet
     end
