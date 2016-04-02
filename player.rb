@@ -17,7 +17,11 @@ class Player
         minimum_bet
       end
     else
-      smart_bet
+      if SecondHand.new(me['hole_cards'], state['community_cards']).good?
+        smart_bet
+      else
+        minimum_bet
+      end
     end
   end
 
