@@ -11,7 +11,7 @@ class Player
     @state = game_state
 
     if (me['hole_cards'] + state['community_cards']).length >= 5
-      case SecondHand.new(me['hole_cards'], state['community_cards'])
+      case SecondHand.new(me['hole_cards'], state['community_cards']).decision
       when :call
         minimum_bet
       when :raise

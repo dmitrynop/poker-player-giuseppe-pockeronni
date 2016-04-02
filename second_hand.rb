@@ -11,6 +11,7 @@ class SecondHand
     # check all cards
     response = Ranking.check_hand(@cards)
     p response
+    p response['rank']
     if response['rank'] > 4
       :raise
     elsif response['rank'] > 1
