@@ -2,7 +2,7 @@ require_relative 'first_hand'
 require_relative 'second_hand'
 
 class Player
-  VERSION = "Better call Saul"
+  VERSION = "Fargo"
 
   MINIMUM_BET = 240
   attr_reader :state
