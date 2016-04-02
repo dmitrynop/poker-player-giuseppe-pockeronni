@@ -1,3 +1,4 @@
+require_relative 'first_hand'
 
 class Player
   VERSION = "Ovik"
@@ -10,7 +11,7 @@ class Player
 
     case state['round']
     when 0
-      state['current_buy_in']
+      FirstHand.new(me['hole_cards']).good?
     else
       smart_bet
     end
