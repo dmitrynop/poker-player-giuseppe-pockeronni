@@ -1,4 +1,5 @@
 require_relative 'first_hand'
+require_relative 'second_hand'
 
 class Player
   VERSION = "Sergey"
