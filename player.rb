@@ -10,20 +10,33 @@ class Player
   def bet_request(game_state)
     @state = game_state
 
-    case state['round']
-    when 0
-      if FirstHand.new(me['hole_cards']).good?
-        smart_bet
-      else
-        minimum_bet
-      end
-    else
+    if (me['hole_cards'] + state['community_cards']).length >= 5
       if SecondHand.new(me['hole_cards'], state['community_cards']).good?
         smart_bet
       else
         minimum_bet
       end
+    else
+      if FirstHand.new(me['hole_cards']).good?
+        smart_bet
+      else
+        minimum_bet
+      end
     end
+    # case state['round']
+    # when 0
+    #   if FirstHand.new(me['hole_cards']).good?
+    #     smart_bet
+    #   else
+    #     minimum_bet
+    #   end
+    # else
+    #   if SecondHand.new(me['hole_cards'], state['community_cards']).good?
+    #     smart_bet
+    #   else
+    #     minimum_bet
+    #   end
+    # end
   end
 
   def showdown(game_state)
